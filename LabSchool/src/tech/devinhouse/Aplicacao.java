@@ -1,10 +1,7 @@
 package tech.devinhouse;
 
 import tech.devinhouse.cli.Display;
-import tech.devinhouse.model.EnumAluno;
-import tech.devinhouse.model.Operacao;
-import tech.devinhouse.model.Pessoa;
-import tech.devinhouse.model.TipoPessoa;
+import tech.devinhouse.model.*;
 import tech.devinhouse.repository.PessoasRepository;
 
 import java.util.List;
@@ -30,40 +27,96 @@ public class Aplicacao {
 
 public void processar(Operacao operacao){
     Scanner scanner = new Scanner(System.in);
+
     switch (operacao){
             case Cadastro_de_Aluno:
                 System.out.println("Cadastrando Aluno");
+                System.out.println();
                 Pessoa aluno = display.cadastrar(TipoPessoa.Aluno);
                 repo.inserir(aluno);
                 break;
+
             case Atualizacao_da_Situacao_da_matricula_de_Aluno:
                 System.out.println("Atualizando Aluno");
-
-
+                System.out.println();
+                int id = Integer.valueOf(display.obterId());
+                String situacao = String.valueOf(display.obterStatusAluno());
+                repo.AtualizaMatriculaAluno(id,situacao);
+                display.aguardar();
                 break;
+
             case Cadastro_de_Professor:
                 System.out.println("Cadastrando Professor");
+                System.out.println();
                 Pessoa professor=display.cadastrar(TipoPessoa.Professor);
                 repo.inserir(professor);
                 break;
+
             case Cadastro_de_Pedagogo:
                 System.out.println("Cadastrando Pedagogo");
+                System.out.println();
+                Pessoa pedagogo= display.cadastrar(TipoPessoa.Pedagogo);
+                repo.inserir(pedagogo);
                 break;
+
             case Realizacao_de_Atendimento_Pedagogico:
                 System.out.println("Atendimento Pedagogico");
+                System.out.println();
+                System.out.println("o Pedagogo:");
+                int idPedagogo = Integer.valueOf(display.obterId());
+                repo.atualizarAtendimentoPedagogo(idPedagogo);
+                System.out.println("o Aluno");
+                int idAluno = Integer.valueOf(display.obterId());
+                repo.atualizarAtendimentoAluno(idAluno);
+                display.aguardar();
                 break;
+
             case Listagem_de_Pessoas:
                 System.out.println("Lista Pessoa");
+                String tipoLista = display.obterTipoPessoa().name();
+                switch (tipoLista){
+                    case "Alunos":
+                        List<Pessoa> listaAluno  = repo.consultar();
+                        display.listarAluno(listaAluno);
+                        display.aguardar();
+                    break;
+
+                    case "Professores":
+                        List<Pessoa> listaProfessor =repo.consultar();
+                        display.listarProfessor(listaProfessor);
+                        display.aguardar();
+                    break;
+
+                    case "Pedagogos":
+                        List<Pessoa> listaPedagogo =repo.consultar();
+                        display.listarPedagogo(listaPedagogo);
+                        display.aguardar();
+                    break;
+
+                    case "Todos":
+                        List<Pessoa> todos = repo.consultar();
+                        if (todos.isEmpty()) {
+                            display.exibirMensagem("Sem Pessoas cadastrados");
+                        }
+                        display.listarAluno(todos);
+                        display.aguardar();
+
+
+
+                }
+
+
                 break;
             case Relatorio_dos_Alunos:
                 System.out.println("Relatorio de Alunos");
+
                 List<Pessoa> pessoas = repo.consultar();
                 if (pessoas.isEmpty()) {
-                    display.exibirMensagem("Sem Alunos cadastrados");
+                    display.exibirMensagem("Sem Pessoas cadastrados");
                 }
-                display.listar(pessoas);
-                System.out.println("Pressione qualquer tecla pra continuar...");
-                String nada = scanner.next();
+                display.listarAluno(pessoas);
+                display.aguardar();
+
                 break;
             case Relatorio_dos_Professores:
                 System.out.println("Relatorio dos Professores");
@@ -80,8 +133,6 @@ public void processar(Operacao operacao){
 
         }
 }
- public void processarAluno(EnumAluno situacao){
 
- }
 
 }

@@ -2,7 +2,6 @@ package tech.devinhouse.cli;
 
 import tech.devinhouse.model.*;
 
-import java.sql.SQLOutput;
 import java.util.List;
 import java.util.Scanner;
 
@@ -45,6 +44,7 @@ public class Display {
                 return operacao;
             } else if (confirmaOpcao !="N") {
                 System.out.println("Opção invalida");
+                aguardar();
             }
 
         }
@@ -68,37 +68,42 @@ public class Display {
         if (tipo == TipoPessoa.Pedagogo) {
             System.out.println("Bem Vindo Ao Cadastro de Pedagogos");
         }
-        System.out.printf("Favor Digitar o Nome do aluno :");
+        System.out.printf("Favor Digitar o Nome :");
         Scanner scanner = new Scanner(System.in);
-        String nomeAluno = scanner.nextLine();
+        String nome = scanner.nextLine();
         System.out.println("");
-        System.out.printf("Digite o numero do telefone do aluno:[(dd)xxxxx-xxxx]");
-        String telefoneAluno = scanner.nextLine();
+        System.out.printf("Digite o numero do telefone :[(dd)xxxxx-xxxx]");
+        String telefone = scanner.nextLine();
         System.out.println("");
-        System.out.printf("Digite a Data de nascimento do Aluno:(dd/MM/yyyy) ");
-        String nascimentoAluno = scanner.nextLine();
+        System.out.printf("Digite a Data de nascimento :(dd/MM/yyyy) ");
+        String nascimento = scanner.nextLine();
         System.out.println("");
-        System.out.printf("Digite o Número do CPF do Aluno:(xxx.xxx.xxx-xx)");
+        System.out.printf("Digite o Número do CPF :(xxx.xxx.xxx-xx)");
         Long cpf = scanner.nextLong();
         System.out.println("");
 
         Pessoa pessoas = null;
         if (tipo == TipoPessoa.Aluno) {
             System.out.printf("Qual a Nota do Processo Seletivo do Aluno: (de 1 a 10)");
-            int notaProcessoSeletivo = scanner.nextInt();
-            String situacao = String.valueOf(obterStatusAluno());
+            double notaProcessoSeletivo = scanner.nextDouble();
+            String situacao = obterStatusAluno().name();
             int atendimentoPedagogico = 0;
-            pessoas = new Aluno( nomeAluno, telefoneAluno, nascimentoAluno, cpf, situacao, notaProcessoSeletivo, atendimentoPedagogico);
+            pessoas = new Aluno( nome, telefone, nascimento, cpf, situacao, notaProcessoSeletivo, atendimentoPedagogico);
+            System.out.println("Cadastro do Aluno Conclúido");
+            aguardar();
         } else if (tipo == TipoPessoa.Professor) {
-            String graduacao =String.valueOf(obterGraduacaoProfessor());
-            String experiencia =String.valueOf(obterExperienciaProfessor());
-            String status = String.valueOf(obterStatusProfessor());
+            String graduacao =obterGraduacaoProfessor().name();
+            String experiencia =obterExperienciaProfessor().name();
+            String status = obterStatusProfessor().name();
+            pessoas= new Professor(nome,telefone,nascimento,cpf,graduacao,experiencia,status);
+            System.out.println("Cadastro do Professor Concluido");
+            aguardar();
         }else if (tipo == TipoPessoa.Pedagogo){
-
-
+            int atendimentoPedagogico =0;
+            pessoas = new Pedagogo(nome,telefone,nascimento,cpf,atendimentoPedagogico);
+            System.out.println("Cadastro do Pedagogo Conclúido");
+            aguardar();
         }
-
-
         return pessoas;
     }
 
@@ -113,6 +118,19 @@ public class Display {
         System.out.println(" Digite a Opção Desejada :");
         EnumAluno situacao = EnumAluno.obterOpcaoAluno(scanner.nextInt());
         return situacao;
+    }
+    public EnumListaPessoa obterTipoPessoa(){
+        Scanner scanner = new Scanner(System.in);
+        System.out.println("Qual o Tipo de Lista :");
+        System.out.println("");
+        System.out.println("1 - Alunos");
+        System.out.println("2 - Professores");
+        System.out.println("3 - Pedagogos");
+        System.out.println("4 - Todos");
+        System.out.println(" Digite a Opção Desejada :");
+        EnumListaPessoa tipoLista = EnumListaPessoa.obterOpcaoLista(scanner.nextInt());
+        return tipoLista;
+
     }
 
     public EnumProfessor obterGraduacaoProfessor() {
@@ -150,12 +168,45 @@ public class Display {
         return status;
     }
 
-    public void listar(List<Pessoa> pessoas) {
-        for(Pessoa pessoa :pessoas ) {
-            System.out.println(pessoa);
-        }
+    public int obterId(){
+        Scanner scanner = new Scanner(System.in);
+        System.out.println("Qual o id de Matricula ");
+        int id = scanner.nextInt();
+        return id;
+
     }
 
+
+    public void listarAluno(List<Pessoa> pessoas) {
+        for(Pessoa pessoa :pessoas ) {
+            Aluno aluno = (Aluno) pessoa;
+            if (pessoa instanceof Aluno)
+            System.out.println(pessoa);
+        }
+        System.out.println();
+    }
+
+    public void listarProfessor(List<Pessoa> pessoas) {
+        for(Pessoa pessoa :pessoas ) {
+            if (pessoa instanceof Professor)
+                System.out.println(pessoa);
+        }
+        System.out.println();
+    }
+    public void listarPedagogo(List<Pessoa> pessoas) {
+        for(Pessoa pessoa :pessoas ) {
+            if (pessoa instanceof Pedagogo)
+                System.out.println(pessoa);
+        }
+        System.out.println();
+    }
+
+    public void aguardar() {
+        System.out.println("Pressione Qualquer Tecla para Continuar... ");
+        Scanner scanner = new Scanner(System.in);
+        scanner.nextLine();
+        System.out.println();
+    }
 }
 
 
