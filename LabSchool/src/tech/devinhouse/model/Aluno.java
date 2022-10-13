@@ -29,10 +29,10 @@ public class Aluno extends Pessoa implements Comparable<Aluno>{
         return "Id: "+codigoId+ " Nome: "+nome+" Cpf:"+cpf+".";
     }
     public String exibirRelatorioAluno(){
-        return "Id: "+codigoId+
+        return " Id: "+codigoId+
                 " Nome: "+nome+" " +
-                "Nota:"+notaProcesso+
-                "Atendimentos pedagogicos: "
+                " Nota:"+notaProcesso+
+                " Atendimentos pedagogicos: "
                 +atendimentoPedagogico+".";
     }
     public String exibirAtendimento(){

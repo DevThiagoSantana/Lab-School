@@ -26,14 +26,17 @@ public class Professor extends Pessoa{
                 '}';
     }
     public String exibirRelatorio(){
-        return "Id: "+codigoId+ " Nome: "+nome+" Cpf:"+cpf+".";
+        return " Id: "+codigoId+
+                " Nome: "+nome+
+                " Cpf:"+cpf+
+                ".";
     }
     public String exibirRelatorioProfessor(){
         return "Id: "+codigoId+
                 " Nome: "+nome+
                 " Formação Academica: "+graduacao+
-                "Experiencia: "+experiencia+
-                "Status: "+statusProfessor+".";
+                " Experiencia: "+experiencia+
+                " Status: "+statusProfessor+".";
     }
 
     public String getGraduacao() {

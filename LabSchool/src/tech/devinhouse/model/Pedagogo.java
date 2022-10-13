@@ -23,7 +23,10 @@ public class Pedagogo extends Pessoa implements Comparable<Pedagogo>{
         return "ID: "+codigoId+ " Nome: "+nome+" Cpf:"+cpf+".";
     }
     public String exibirAtendimento(){
-        return "ID: "+codigoId+" Nome: "+nome+" Total de Atendimentos:"+AtendimentoPedagogo+".";
+        return "ID: "+codigoId+
+                " Nome: "+nome+
+                " Total de Atendimentos:"+AtendimentoPedagogo+
+                ".";
     }
 
     public int getAtendimentoPedagogo() {
