@@ -1,11 +1,11 @@
 package tech.devinhouse.model;
 
-public class Aluno extends Pessoa{
+public class Aluno extends Pessoa implements Comparable<Aluno>{
     String situacaoAluno;
     double notaProcesso;
-    long atendimentoPedagogico;
+    int atendimentoPedagogico;
 
-    public Aluno(String nome, String telefone, String dataDeNascimento, Long cpf, String situacaoAluno, double notaProcesso, long atendimentoPedagogico) {
+    public Aluno(String nome, String telefone, String dataDeNascimento, String cpf, String situacaoAluno, double notaProcesso, int atendimentoPedagogico) {
         super(nome, telefone, dataDeNascimento, cpf);
         this.situacaoAluno = situacaoAluno;
         this.notaProcesso = notaProcesso;
@@ -25,6 +25,22 @@ public class Aluno extends Pessoa{
                 ", codigoId=" + codigoId +
                 '}';
     }
+    public String exibirRelatorio(){
+        return "Id: "+codigoId+ " Nome: "+nome+" Cpf:"+cpf+".";
+    }
+    public String exibirRelatorioAluno(){
+        return "Id: "+codigoId+
+                " Nome: "+nome+" " +
+                "Nota:"+notaProcesso+
+                "Atendimentos pedagogicos: "
+                +atendimentoPedagogico+".";
+    }
+    public String exibirAtendimento(){
+        return "ID: "+codigoId+" Nome: "+nome+" Total de Atendimentos:"+atendimentoPedagogico+".";
+    }
+
+
+
 
     public String getSituacaoAluno() {
         return situacaoAluno;
@@ -42,11 +58,17 @@ public class Aluno extends Pessoa{
         this.notaProcesso = notaProcesso;
     }
 
-    public long getAtendimentoPedagogico() {
+    public int getAtendimentoPedagogico() {
         return atendimentoPedagogico;
     }
 
-    public void setAtendimentoPedagogico(long atendimentoPedagogico) {
+    public void setAtendimentoPedagogico(int atendimentoPedagogico) {
         this.atendimentoPedagogico = atendimentoPedagogico;
+    }
+
+    @Override
+    public int compareTo(Aluno o) {
+
+        return  (this.atendimentoPedagogico - o.getAtendimentoPedagogico());
     }
 }

@@ -4,10 +4,10 @@ public abstract class Pessoa {
     String nome;
     String telefone;
     String dataDeNascimento;
-    Long cpf;
+    String cpf;
     long codigoId;
 
-    public Pessoa( String nome, String telefone, String dataDeNascimento, Long cpf ) {
+    public Pessoa( String nome, String telefone, String dataDeNascimento, String cpf ) {
         this.nome = nome;
         this.telefone = telefone;
         this.dataDeNascimento = dataDeNascimento;
@@ -24,6 +24,9 @@ public abstract class Pessoa {
                 ", cpf=" + cpf +
                 ", codigoId=" + codigoId +
                 '}';
+    }
+    public String exibirrelatorio(){
+        return "Id: "+codigoId+ " Nome: "+nome+" Cpf:"+cpf+".";
     }
 
     public String getNome() {
@@ -50,11 +53,11 @@ public abstract class Pessoa {
         this.dataDeNascimento = dataDeNascimento;
     }
 
-    public Long getCpf() {
+    public String getCpf() {
         return cpf;
     }
 
-    public void setCpf(Long cpf) {
+    public void setCpf(String cpf) {
         this.cpf = cpf;
     }
 

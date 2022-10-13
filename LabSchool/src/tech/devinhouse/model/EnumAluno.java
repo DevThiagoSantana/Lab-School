@@ -4,7 +4,8 @@ public enum EnumAluno {
     Ativo,
     Irregular,
     Atendimento_Pedagógico,
-    Inativo;
+    Inativo,
+    Todos;
 
 
     public static EnumAluno obterOpcaoAluno(int codigoAluno) {

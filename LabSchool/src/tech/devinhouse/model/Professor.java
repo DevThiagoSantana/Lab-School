@@ -5,7 +5,7 @@ public class Professor extends Pessoa{
     String experiencia;
     String statusProfessor;
 
-    public Professor(String nome, String telefone, String dataDeNascimento, Long cpf, String graduacao, String experiencia, String statusProfessor) {
+    public Professor(String nome, String telefone, String dataDeNascimento, String cpf, String graduacao, String experiencia, String statusProfessor) {
         super(nome, telefone, dataDeNascimento, cpf);
         this.graduacao = graduacao;
         this.experiencia = experiencia;
@@ -24,6 +24,16 @@ public class Professor extends Pessoa{
                 ", cpf=" + cpf +
                 ", codigoId=" + codigoId +
                 '}';
+    }
+    public String exibirRelatorio(){
+        return "Id: "+codigoId+ " Nome: "+nome+" Cpf:"+cpf+".";
+    }
+    public String exibirRelatorioProfessor(){
+        return "Id: "+codigoId+
+                " Nome: "+nome+
+                " Formação Academica: "+graduacao+
+                "Experiencia: "+experiencia+
+                "Status: "+statusProfessor+".";
     }
 
     public String getGraduacao() {

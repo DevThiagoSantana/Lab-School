@@ -8,6 +8,7 @@ public enum EnumProfessor {
     Front_End,
     Back_End,
     Full_Stack,
+    Todos,
     Ativo,
     Inativo;
 
@@ -21,7 +22,7 @@ public enum EnumProfessor {
         return null;
     }
     public static EnumProfessor obterExperienciaPreofessor(int codigoExpProfessor ){
-        if(codigoExpProfessor>0 && codigoExpProfessor<4){
+        if(codigoExpProfessor>0 && codigoExpProfessor<5){
             EnumProfessor[] expProfessor =EnumProfessor.values();
             return expProfessor [codigoExpProfessor+3];
         }
@@ -31,7 +32,7 @@ public enum EnumProfessor {
     public static EnumProfessor obterStatusPprofessor(int codigoStatProfessor){
         if(codigoStatProfessor>0 && codigoStatProfessor<3){
             EnumProfessor[] statProfessor =EnumProfessor.values();
-            return statProfessor[codigoStatProfessor+6];
+            return statProfessor[codigoStatProfessor+7];
         }
         System.out.println("Codigo invalido");
         return null;

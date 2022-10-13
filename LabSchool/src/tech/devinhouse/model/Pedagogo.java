@@ -1,9 +1,9 @@
 package tech.devinhouse.model;
 
-public class Pedagogo extends Pessoa{
-    long AtendimentoPedagogo;
+public class Pedagogo extends Pessoa implements Comparable<Pedagogo>{
+    int AtendimentoPedagogo;
 
-    public Pedagogo(String nome, String telefone, String dataDeNascimento, Long cpf, long atendimentoPedagogo) {
+    public Pedagogo(String nome, String telefone, String dataDeNascimento, String cpf, int atendimentoPedagogo) {
         super(nome, telefone, dataDeNascimento, cpf);
         AtendimentoPedagogo = atendimentoPedagogo;
     }
@@ -19,12 +19,23 @@ public class Pedagogo extends Pessoa{
                 ", codigoId=" + codigoId +
                 '}';
     }
+    public String exibirRelatorio(){
+        return "ID: "+codigoId+ " Nome: "+nome+" Cpf:"+cpf+".";
+    }
+    public String exibirAtendimento(){
+        return "ID: "+codigoId+" Nome: "+nome+" Total de Atendimentos:"+AtendimentoPedagogo+".";
+    }
 
-    public long getAtendimentoPedagogo() {
+    public int getAtendimentoPedagogo() {
         return AtendimentoPedagogo;
     }
 
-    public void setAtendimentoPedagogo(long atendimentoPedagogo) {
+    public void setAtendimentoPedagogo(int atendimentoPedagogo) {
         AtendimentoPedagogo = atendimentoPedagogo;
+    }
+
+    @Override
+    public int compareTo(Pedagogo o) {
+        return (this.AtendimentoPedagogo -o.getAtendimentoPedagogo());
     }
 }
