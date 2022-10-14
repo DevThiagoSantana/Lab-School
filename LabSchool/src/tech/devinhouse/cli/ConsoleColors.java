@@ -3,6 +3,7 @@ package tech.devinhouse.cli;
 public class ConsoleColors {
     // Reset
     public static final String RESET = "\033[0m";  // Text Reset
+    public static final String ITALIC ="\033[3m"; // Text italic
 
     // Regular Colors
     public static final String BLACK = "\033[0;30m";   // BLACK+

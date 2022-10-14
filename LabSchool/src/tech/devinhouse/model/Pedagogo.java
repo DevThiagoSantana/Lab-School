@@ -1,9 +1,11 @@
 package tech.devinhouse.model;
 
+import java.time.LocalDate;
+
 public class Pedagogo extends Pessoa implements Comparable<Pedagogo>{
     int AtendimentoPedagogo;
 
-    public Pedagogo(String nome, String telefone, String dataDeNascimento, String cpf, int atendimentoPedagogo) {
+    public Pedagogo(String nome, String telefone, LocalDate dataDeNascimento, String cpf, int atendimentoPedagogo) {
         super(nome, telefone, dataDeNascimento, cpf);
         AtendimentoPedagogo = atendimentoPedagogo;
     }

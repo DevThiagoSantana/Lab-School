@@ -1,11 +1,13 @@
 package tech.devinhouse.model;
 
+import java.time.LocalDate;
+
 public class Aluno extends Pessoa implements Comparable<Aluno>{
     String situacaoAluno;
     double notaProcesso;
     int atendimentoPedagogico;
 
-    public Aluno(String nome, String telefone, String dataDeNascimento, String cpf, String situacaoAluno, double notaProcesso, int atendimentoPedagogico) {
+    public Aluno(String nome, String telefone, LocalDate dataDeNascimento, String cpf, String situacaoAluno, double notaProcesso, int atendimentoPedagogico) {
         super(nome, telefone, dataDeNascimento, cpf);
         this.situacaoAluno = situacaoAluno;
         this.notaProcesso = notaProcesso;

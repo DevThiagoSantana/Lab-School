@@ -21,6 +21,7 @@ public enum EnumProfessor {
         System.out.println("Codigo invalido");
         return null;
     }
+
     public static EnumProfessor obterExperienciaPreofessor(int codigoExpProfessor ){
         if(codigoExpProfessor>0 && codigoExpProfessor<5){
             EnumProfessor[] expProfessor =EnumProfessor.values();
@@ -29,6 +30,7 @@ public enum EnumProfessor {
         System.out.println("Codigo invalido");
         return null;
     }
+
     public static EnumProfessor obterStatusPprofessor(int codigoStatProfessor){
         if(codigoStatProfessor>0 && codigoStatProfessor<3){
             EnumProfessor[] statProfessor =EnumProfessor.values();

@@ -2,7 +2,8 @@ package tech.devinhouse.cli;
 
 import tech.devinhouse.model.*;
 
-import java.util.ArrayList;
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
 import java.util.List;
 import java.util.Scanner;
 
@@ -38,35 +39,110 @@ public class Display {
 
     }
 
-    public void exibirMenu() {
+    public void exibirPreMenu(){
         System.out.println("");
         System.out.println("------------MENU------------");
         System.out.println("");
-        System.out.println("1  - Cadastro de Aluno");
-        System.out.println("2  - Atualização da Situação da matrícula de Aluno");
-        System.out.println("3  - Cadastro de Professor");
-        System.out.println("4  - Cadastro de Pedagogo");
-        System.out.println("5  - Realização de Atendimento Pedagógico");
-        System.out.println("6  - Listagem de Pessoas");
-        System.out.println("7  - Relatório dos Alunos");
-        System.out.println("8  - Relatório dos Professores");
-        System.out.println("9  - Relatório de Alunos com mais atendimentos pedagógicos");
-        System.out.println("10 - Pedagogos com mais atendimentos pedagógicos");
+        System.out.println("1  - Cadastro");
+        System.out.println("2  - Atendimento");
+        System.out.println("3  - Relatorio");
         System.out.println("0  - Sair");
-        System.out.println();
-    }// Menu Inicial do Programa
+
+    }
+    public void exibirMenuCadastro(){
+        System.out.println("");
+        System.out.println("------------MENU CADASTRO------------");
+        System.out.println("");
+        System.out.println("1  - Cadastro de Aluno");
+        System.out.println("2  - Cadastro de Professor");
+        System.out.println("3  - Cadastro de Pedagogo");
+        System.out.println("0  - Sair do Menu");
+
+    }
+    public void exibirMenuAtendimento(){
+        System.out.println("");
+        System.out.println("------------MENU ATENDIMENTO------------");
+        System.out.println("");
+        System.out.println("1  - Atualização da Situação da matrícula de Aluno");
+        System.out.println("2  - Realização de Atendimento Pedagógico");
+        System.out.println("0  - Sair do Menu");
+
+    }
+
+    public void exibirMenuRelatorio(){
+        System.out.println("");
+            System.out.println("------------MENU RELATORIOS------------");
+        System.out.println("");
+        System.out.println("1  - Listagem de Pessoas");
+        System.out.println("2  - Relatório dos Alunos");
+        System.out.println("3  - Relatório dos Professores");
+        System.out.println("4  - Relatório de Alunos com mais atendimentos pedagógicos");
+        System.out.println("5  - Relatorio de Pedagogos com mais atendimentos pedagógicos");
+        System.out.println("0  - Sair do Menu");
+    }
+
+// Versão Antiga do Menu
+//    public void exibirMenu() {
+//        System.out.println("");
+//        System.out.println("------------MENU------------");
+//        System.out.println("");
+//        System.out.println("1  - Cadastro de Aluno");
+//        System.out.println("2  - Atualização da Situação da matrícula de Aluno");
+//        System.out.println("3  - Cadastro de Professor");
+//        System.out.println("4  - Cadastro de Pedagogo");
+//        System.out.println("5  - Realização de Atendimento Pedagógico");
+//        System.out.println("6  - Listagem de Pessoas");
+//        System.out.println("7  - Relatório dos Alunos");
+//        System.out.println("8  - Relatório dos Professores");
+//        System.out.println("9  - Relatório de Alunos com mais atendimentos pedagógicos");
+//        System.out.println("10 - Pedagogos com mais atendimentos pedagógicos");
+//        System.out.println("0  - Sair");
+//        System.out.println();
+//    }// Menu Inicial do Programa
 
 
-    public Operacao obterOperacao() {
-        int menu = 1;
-        Operacao operacao = null;
-        while (menu == 1) {
+    public PreOperacao obterPreOperacao() {
+
+        PreOperacao preOperacao= null;
+        while (preOperacao != PreOperacao.Sair) {
             System.out.print("Digite a Opçao Desejada: ");
             Scanner scanner = new Scanner(System.in);
-            int codigoMenu = scanner.nextInt();
-            operacao = Operacao.obterCodigoMenu(codigoMenu);
+            int codigoPreMenu = scanner.nextInt();
+            preOperacao =PreOperacao.obterCodigoPreMenu(codigoPreMenu);
             System.out.println(ConsoleColors.GREEN);
-            System.out.println("Voce Escolheu a Opção " + operacao);
+            System.out.println("Voce Escolheu a Opção " +ConsoleColors.CYAN_BOLD+ preOperacao+ConsoleColors.RESET);
+            System.out.println("Digite Sim [S]  ou Não[N]");
+            System.out.println(ConsoleColors.RESET);
+            String confirmaOpcao = scanner.next();
+            confirmaOpcao = confirmaOpcao.toUpperCase();
+            if (confirmaOpcao.equals("S")) {
+                return preOperacao;
+            } else if (!confirmaOpcao.equals( "N")) {
+                System.out.println("Opção invalida");
+                aguardar();
+            }
+            exibirPreMenu();
+
+        }
+        return preOperacao;
+
+
+    }
+    public Operacao obterOperacaoCadastro() {
+
+        Operacao operacao = null;
+        Integer codigoMenu =null;
+        while (operacao != Operacao.Sair) {
+            System.out.print("Digite a Opçao Desejada: ");
+            Scanner scanner = new Scanner(System.in);
+            int codigoMenuCadastro = scanner.nextInt();
+            if (codigoMenuCadastro == 0) codigoMenu =0;
+             else if (codigoMenuCadastro == 1) codigoMenu =1;
+            else if (codigoMenuCadastro == 2) codigoMenu =3;
+            else if (codigoMenuCadastro == 3) codigoMenu =4;
+            operacao =operacao.obterCodigoMenu(codigoMenu);
+            System.out.println(ConsoleColors.GREEN);
+            System.out.println("Voce Escolheu a Opção " +ConsoleColors.CYAN_BOLD+ operacao+ConsoleColors.RESET);
             System.out.println("Digite Sim [S]  ou Não[N]");
             System.out.println(ConsoleColors.RESET);
             String confirmaOpcao = scanner.next();
@@ -77,13 +153,75 @@ public class Display {
                 System.out.println("Opção invalida");
                 aguardar();
             }
-            exibirMenu();
+            exibirMenuCadastro();
 
         }
         return operacao;
 
 
     }
+    public Operacao obterOperacaoAtedimento() {
+
+        Operacao operacao = null;
+        Integer codigoMenu =null;
+        while (operacao != Operacao.Sair) {
+            System.out.print("Digite a Opçao Desejada: ");
+            Scanner scanner = new Scanner(System.in);
+            int codigoMenuCadastro = scanner.nextInt();
+            if (codigoMenuCadastro == 0) codigoMenu =0;
+            else if (codigoMenuCadastro == 1) codigoMenu =2;
+            else if (codigoMenuCadastro == 2) codigoMenu =5;
+            operacao =operacao.obterCodigoMenu(codigoMenu);
+            System.out.println(ConsoleColors.GREEN);
+            System.out.println("Voce Escolheu a Opção " +ConsoleColors.CYAN_BOLD+ operacao+ConsoleColors.RESET);
+            System.out.println("Digite Sim [S]  ou Não[N]");
+            System.out.println(ConsoleColors.RESET);
+            String confirmaOpcao = scanner.next();
+            confirmaOpcao = confirmaOpcao.toUpperCase();
+            if (confirmaOpcao.equals("S")) {
+                return operacao;
+            } else if (!confirmaOpcao.equals( "N")) {
+                System.out.println("Opção invalida");
+                aguardar();
+            }
+            exibirMenuCadastro();
+
+        }
+        return operacao;
+
+
+    }
+    public Operacao obterOperacaoRelatorio() {
+
+        Operacao operacao = null;
+        Integer codigoMenu =null;
+        while (operacao != Operacao.Sair) {
+            System.out.print("Digite a Opçao Desejada: ");
+            Scanner scanner = new Scanner(System.in);
+            int codigoMenuCadastro = scanner.nextInt();
+            if (codigoMenuCadastro == 0) codigoMenu =0;
+            else codigoMenu=codigoMenuCadastro+5;
+            operacao =operacao.obterCodigoMenu(codigoMenu);
+            System.out.println(ConsoleColors.GREEN);
+            System.out.println("Voce Escolheu a Opção " +ConsoleColors.CYAN_BOLD+ operacao+ConsoleColors.RESET);
+            System.out.println("Digite Sim [S]  ou Não[N]");
+            System.out.println(ConsoleColors.RESET);
+            String confirmaOpcao = scanner.next();
+            confirmaOpcao = confirmaOpcao.toUpperCase();
+            if (confirmaOpcao.equals("S")) {
+                return operacao;
+            } else if (!confirmaOpcao.equals( "N")) {
+                System.out.println("Opção invalida");
+                aguardar();
+            }
+            exibirMenuCadastro();
+
+        }
+        return operacao;
+
+
+    }
+
 
     public void exibirMensagem(String msg) {
 
@@ -92,13 +230,13 @@ public class Display {
 
     public Pessoa cadastrar(TipoPessoa tipo) {
         if (tipo == TipoPessoa.Aluno) {
-            System.out.println("Bem Vindo ao Cadastro de Aluno");
+            System.out.println(ConsoleColors.BLUE_UNDERLINED+"Bem Vindo ao Cadastro de Aluno"+ConsoleColors.RESET);
         }
         if (tipo == TipoPessoa.Professor) {
-            System.out.println("Bem Vindo Ao Cadastro de Professores");
+            System.out.println(ConsoleColors.BLUE_UNDERLINED+"Bem Vindo Ao Cadastro de Professores"+ConsoleColors.RESET);
         }
         if (tipo == TipoPessoa.Pedagogo) {
-            System.out.println("Bem Vindo Ao Cadastro de Pedagogos");
+            System.out.println(ConsoleColors.BLUE_UNDERLINED+"Bem Vindo Ao Cadastro de Pedagogos"+ConsoleColors.RESET);
         }
         System.out.printf("Favor Digitar o Nome :");
         Scanner scanner = new Scanner(System.in);
@@ -109,6 +247,8 @@ public class Display {
         System.out.println("");
         System.out.printf("Digite a Data de nascimento :(dd/MM/yyyy) ");
         String nascimento = scanner.nextLine();
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy");
+        LocalDate dataNascimento = LocalDate.parse(nascimento,formatter);
         System.out.println("");
         System.out.printf("Digite o Número do CPF :(xxx.xxx.xxx-xx)");
         String cpf = scanner.next();
@@ -120,7 +260,7 @@ public class Display {
             String situacao = obterStatusAluno().name();
             if (!situacao.equals(EnumAluno.Todos.name())) {
                 int atendimentoPedagogico = 0;
-                pessoas = new Aluno(nome, telefone, nascimento, cpf, situacao, notaProcessoSeletivo, atendimentoPedagogico);
+                pessoas = new Aluno(nome, telefone, dataNascimento, cpf, situacao, notaProcessoSeletivo, atendimentoPedagogico);
                 System.out.println("Cadastro do Aluno Conclúido");
                 aguardar();
             }else {
@@ -132,7 +272,7 @@ public class Display {
             String experiencia = obterExperienciaProfessor().name();
             if(!experiencia.equals( EnumAluno.Todos.name())){
                 String status = obterStatusProfessor().name();
-                pessoas = new Professor(nome, telefone, nascimento, cpf, graduacao, experiencia, status);
+                pessoas = new Professor(nome, telefone, dataNascimento, cpf, graduacao, experiencia, status);
                 System.out.println("Cadastro do Professor Concluido");
                 aguardar();
             }else{
@@ -141,7 +281,7 @@ public class Display {
             }
         } else if (tipo == TipoPessoa.Pedagogo) {
             int atendimentoPedagogico = 0;
-            pessoas = new Pedagogo(nome, telefone, nascimento, cpf, atendimentoPedagogico);
+            pessoas = new Pedagogo(nome, telefone, dataNascimento, cpf, atendimentoPedagogico);
             System.out.println("Cadastro do Pedagogo Conclúido");
             aguardar();
         }

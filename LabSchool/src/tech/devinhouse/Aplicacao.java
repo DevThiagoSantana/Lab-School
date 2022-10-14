@@ -1,5 +1,7 @@
 package tech.devinhouse;
 
+import tech.devinhouse.Exception.OpcaoInvalidaException;
+import tech.devinhouse.cli.ConsoleColors;
 import tech.devinhouse.cli.Display;
 import tech.devinhouse.model.*;
 import tech.devinhouse.repository.PessoasRepository;
@@ -12,17 +14,62 @@ public class Aplicacao {
    public Display display = new Display();
    private PessoasRepository repo = new PessoasRepository();
 
-    public void executar() {
+    public void executar() throws OpcaoInvalidaException {
+
         Operacao operacao = null;
+        PreOperacao preOperacao =null ;
+
         display.intro();
         display.aguardar();
 
         while (operacao != Operacao.Sair) {
-            display.exibirMenu();
-            operacao = display.obterOperacao();
-            processar(operacao);
+                display.exibirPreMenu();
+                preOperacao = display.obterPreOperacao();
+                if (preOperacao != PreOperacao.Sair) {
+                    operacao = preProcessar(preOperacao);
+                    if (operacao != Operacao.Sair) {
+                        processar(operacao);
+                    } else {
+                        operacao = null;
+                    }
+                } else {
+                    operacao = Operacao.Sair;
+                    processar(operacao);
+                }
+
+
+
+
 
         }
+    }
+    public Operacao preProcessar(PreOperacao preOperacao){
+        Scanner scanner = new Scanner(System.in);
+        Operacao operacao = null;
+        switch (preOperacao){
+            case  Cadastro :
+                display.exibirMenuCadastro();
+                operacao = display.obterOperacaoCadastro();
+                return operacao;
+
+
+            case Atendimento:
+                display.exibirMenuAtendimento();
+                operacao =display.obterOperacaoAtedimento();
+                return operacao;
+
+
+            case  Relatorio:
+                display.exibirMenuRelatorio();
+                operacao =display.obterOperacaoRelatorio();
+                return operacao;
+
+            case Sair:
+                return  operacao = Operacao.Sair;
+        }
+
+
+        return operacao;
     }
 
 public void processar(Operacao operacao){
@@ -154,7 +201,7 @@ public void processar(Operacao operacao){
 
 
             case Sair:
-                System.out.println("Saindo do programa");
+                System.out.println(ConsoleColors.RED_BACKGROUND+"Saindo do programa"+ ConsoleColors.RESET);
                 display.intro();
                 display.aguardarSair();
                 break;

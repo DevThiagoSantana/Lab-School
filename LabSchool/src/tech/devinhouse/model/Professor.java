@@ -1,11 +1,13 @@
 package tech.devinhouse.model;
 
+import java.time.LocalDate;
+
 public class Professor extends Pessoa{
     String graduacao;
     String experiencia;
     String statusProfessor;
 
-    public Professor(String nome, String telefone, String dataDeNascimento, String cpf, String graduacao, String experiencia, String statusProfessor) {
+    public Professor(String nome, String telefone, LocalDate dataDeNascimento, String cpf, String graduacao, String experiencia, String statusProfessor) {
         super(nome, telefone, dataDeNascimento, cpf);
         this.graduacao = graduacao;
         this.experiencia = experiencia;

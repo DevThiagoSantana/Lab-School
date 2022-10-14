@@ -1,13 +1,15 @@
 package tech.devinhouse.model;
 
+import java.time.LocalDate;
+
 public abstract class Pessoa {
     String nome;
     String telefone;
-    String dataDeNascimento;
+    LocalDate dataDeNascimento;
     String cpf;
     long codigoId;
 
-    public Pessoa( String nome, String telefone, String dataDeNascimento, String cpf ) {
+    public Pessoa( String nome, String telefone, LocalDate dataDeNascimento, String cpf ) {
         this.nome = nome;
         this.telefone = telefone;
         this.dataDeNascimento = dataDeNascimento;
@@ -45,11 +47,11 @@ public abstract class Pessoa {
         this.telefone = telefone;
     }
 
-    public String getDataDeNascimento() {
+    public LocalDate getDataDeNascimento() {
         return dataDeNascimento;
     }
 
-    public void setDataDeNascimento(String dataDeNascimento) {
+    public void setDataDeNascimento(LocalDate dataDeNascimento) {
         this.dataDeNascimento = dataDeNascimento;
     }
 
