@@ -3,9 +3,9 @@ package tech.devinhouse.model;
 import java.time.LocalDate;
 
 public class Professor extends Pessoa{
-    String graduacao;
-    String experiencia;
-    String statusProfessor;
+    private String graduacao;
+    private String experiencia;
+    private String statusProfessor;
 
     public Professor(String nome, String telefone, LocalDate dataDeNascimento, String cpf, String graduacao, String experiencia, String statusProfessor) {
         super(nome, telefone, dataDeNascimento, cpf);
@@ -20,22 +20,22 @@ public class Professor extends Pessoa{
                 "graduacao='" + graduacao + '\'' +
                 ", experiencia='" + experiencia + '\'' +
                 ", statusProfessor='" + statusProfessor + '\'' +
-                ", nome='" + nome + '\'' +
-                ", telefone='" + telefone + '\'' +
-                ", dataDeNascimento='" + dataDeNascimento + '\'' +
-                ", cpf=" + cpf +
-                ", codigoId=" + codigoId +
+                ", nome='" + getNome() + '\'' +
+                ", telefone='" + getTelefone() + '\'' +
+                ", dataDeNascimento='" + getDataDeNascimento() + '\'' +
+                ", cpf=" + getCpf() +
+                ", codigoId=" + getCodigoId() +
                 '}';
     }
     public String exibirRelatorio(){
-        return " Id: "+codigoId+
-                " Nome: "+nome+
-                " Cpf:"+cpf+
+        return " Id: "+getCodigoId()+
+                " Nome: "+ getNome()+
+                " Cpf:"+ getCpf()+
                 ".";
     }
     public String exibirRelatorioProfessor(){
-        return "Id: "+codigoId+
-                " Nome: "+nome+
+        return "Id: "+getCodigoId()+
+                " Nome: "+getNome()+
                 " Formação Academica: "+graduacao+
                 " Experiencia: "+experiencia+
                 " Status: "+statusProfessor+".";

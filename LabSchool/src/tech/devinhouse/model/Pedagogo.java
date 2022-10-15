@@ -3,7 +3,7 @@ package tech.devinhouse.model;
 import java.time.LocalDate;
 
 public class Pedagogo extends Pessoa implements Comparable<Pedagogo>{
-    int AtendimentoPedagogo;
+    private int AtendimentoPedagogo;
 
     public Pedagogo(String nome, String telefone, LocalDate dataDeNascimento, String cpf, int atendimentoPedagogo) {
         super(nome, telefone, dataDeNascimento, cpf);
@@ -14,19 +14,19 @@ public class Pedagogo extends Pessoa implements Comparable<Pedagogo>{
     public String toString() {
         return "Pedagogo{" +
                 "AtendimentoPedagogo=" + AtendimentoPedagogo +
-                ", nome='" + nome + '\'' +
-                ", telefone='" + telefone + '\'' +
-                ", dataDeNascimento='" + dataDeNascimento + '\'' +
-                ", cpf=" + cpf +
-                ", codigoId=" + codigoId +
+                ", nome='" + getNome() + '\'' +
+                ", telefone='" + getTelefone() + '\'' +
+                ", dataDeNascimento='" + getDataDeNascimento() + '\'' +
+                ", cpf=" + getCpf() +
+                ", codigoId=" + getCodigoId() +
                 '}';
     }
     public String exibirRelatorio(){
-        return "ID: "+codigoId+ " Nome: "+nome+" Cpf:"+cpf+".";
+        return "ID: "+getCodigoId()+ " Nome: "+ getNome() +" Cpf:"+getCpf()+".";
     }
     public String exibirAtendimento(){
-        return "ID: "+codigoId+
-                " Nome: "+nome+
+        return "ID: "+getCodigoId()+
+                " Nome: "+ getNome() +
                 " Total de Atendimentos:"+AtendimentoPedagogo+
                 ".";
     }

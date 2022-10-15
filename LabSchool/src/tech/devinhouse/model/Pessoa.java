@@ -3,11 +3,11 @@ package tech.devinhouse.model;
 import java.time.LocalDate;
 
 public abstract class Pessoa {
-    String nome;
-    String telefone;
-    LocalDate dataDeNascimento;
-    String cpf;
-    long codigoId;
+    private String nome;
+    private String telefone;
+    private LocalDate dataDeNascimento;
+    private String cpf;
+    private long codigoId;
 
     public Pessoa( String nome, String telefone, LocalDate dataDeNascimento, String cpf ) {
         this.nome = nome;

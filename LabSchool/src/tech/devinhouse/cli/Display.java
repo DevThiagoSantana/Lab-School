@@ -1,6 +1,10 @@
 package tech.devinhouse.cli;
 
+import tech.devinhouse.Aplicacao;
+import tech.devinhouse.Exception.OpcaoInvalidaException;
 import tech.devinhouse.model.*;
+import tech.devinhouse.util.ConsoleColors;
+import tech.devinhouse.util.CpfValidador;
 
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
@@ -228,7 +232,8 @@ public class Display {
         System.out.println(msg);
     }
 
-    public Pessoa cadastrar(TipoPessoa tipo) {
+    public Pessoa cadastrar(TipoPessoa tipo) throws OpcaoInvalidaException {
+
         if (tipo == TipoPessoa.Aluno) {
             System.out.println(ConsoleColors.BLUE_UNDERLINED+"Bem Vindo ao Cadastro de Aluno"+ConsoleColors.RESET);
         }
@@ -238,6 +243,7 @@ public class Display {
         if (tipo == TipoPessoa.Pedagogo) {
             System.out.println(ConsoleColors.BLUE_UNDERLINED+"Bem Vindo Ao Cadastro de Pedagogos"+ConsoleColors.RESET);
         }
+
         System.out.printf("Favor Digitar o Nome :");
         Scanner scanner = new Scanner(System.in);
         String nome = scanner.nextLine();
@@ -247,11 +253,25 @@ public class Display {
         System.out.println("");
         System.out.printf("Digite a Data de nascimento :(dd/MM/yyyy) ");
         String nascimento = scanner.nextLine();
-        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy");
-        LocalDate dataNascimento = LocalDate.parse(nascimento,formatter);
+        LocalDate dataNascimento =null;
+        try {
+            DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy");
+            dataNascimento = LocalDate.parse(nascimento, formatter);
+        }catch (Exception e){
+            throw new OpcaoInvalidaException(nascimento) ;
+        }
         System.out.println("");
-        System.out.printf("Digite o Número do CPF :(xxx.xxx.xxx-xx)");
+        System.out.printf("Digite o Número do CPF :" +ConsoleColors.YELLOW_UNDERLINED+"(SOMENTE OS NUMEROS)"+ConsoleColors.RESET);
         String cpf = scanner.next();
+        boolean valida =CpfValidador.eCpf(cpf);
+            if (valida == false){
+                System.out.println("Cpf invalido...");
+                aguardar();
+                cadastrar(tipo);
+            }else{
+                exibirMensagem("Cpf é Valido.");
+            }
+
         System.out.println("");
         Pessoa pessoas = null;
         if (tipo == TipoPessoa.Aluno) {
@@ -465,6 +485,7 @@ public class Display {
         }
         System.out.println();
     }
+
     public void listarProfessorStatus(List<Pessoa> pessoas ,EnumProfessor status){
         for (Pessoa pessoa : pessoas) {
             if (pessoa instanceof Professor) {
@@ -480,9 +501,6 @@ public class Display {
         System.out.println();
 
     }
-
-
-
 }
 
 

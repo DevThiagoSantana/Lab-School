@@ -3,9 +3,9 @@ package tech.devinhouse.model;
 import java.time.LocalDate;
 
 public class Aluno extends Pessoa implements Comparable<Aluno>{
-    String situacaoAluno;
-    double notaProcesso;
-    int atendimentoPedagogico;
+    private String situacaoAluno;
+    private double notaProcesso;
+    private int atendimentoPedagogico;
 
     public Aluno(String nome, String telefone, LocalDate dataDeNascimento, String cpf, String situacaoAluno, double notaProcesso, int atendimentoPedagogico) {
         super(nome, telefone, dataDeNascimento, cpf);
@@ -20,25 +20,25 @@ public class Aluno extends Pessoa implements Comparable<Aluno>{
                 "situacaoAluno='" + situacaoAluno + '\'' +
                 ", notaProcesso=" + notaProcesso +
                 ", atendimentoPedagogico=" + atendimentoPedagogico +
-                ", nome='" + nome + '\'' +
-                ", telefone='" + telefone + '\'' +
-                ", dataDeNascimento='" + dataDeNascimento + '\'' +
-                ", cpf=" + cpf +
-                ", codigoId=" + codigoId +
+                ", nome='" + getNome() + '\'' +
+                ", telefone='" + getTelefone() + '\'' +
+                ", dataDeNascimento='" + getDataDeNascimento() + '\'' +
+                ", cpf=" + getCpf() +
+                ", codigoId=" + getCodigoId() +
                 '}';
     }
     public String exibirRelatorio(){
-        return "Id: "+codigoId+ " Nome: "+nome+" Cpf:"+cpf+".";
+        return "Id: "+getCodigoId()+ " Nome: "+getNome()+" Cpf:"+getCpf()+".";
     }
     public String exibirRelatorioAluno(){
-        return " Id: "+codigoId+
-                " Nome: "+nome+" " +
+        return " Id: "+getCodigoId()+
+                " Nome: "+getNome()+" " +
                 " Nota:"+notaProcesso+
                 " Atendimentos pedagogicos: "
                 +atendimentoPedagogico+".";
     }
     public String exibirAtendimento(){
-        return "ID: "+codigoId+" Nome: "+nome+" Total de Atendimentos:"+atendimentoPedagogico+".";
+        return "ID: "+getCodigoId()+" Nome: "+getNome()+" Total de Atendimentos:"+atendimentoPedagogico+".";
     }
 
 

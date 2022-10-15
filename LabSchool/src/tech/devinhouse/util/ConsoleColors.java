@@ -1,4 +1,4 @@
-package tech.devinhouse.cli;
+package tech.devinhouse.util;
 
 public class ConsoleColors {
     // Reset
