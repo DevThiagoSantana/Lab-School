@@ -1,6 +1,6 @@
 package tech.devinhouse;
 
-import tech.devinhouse.Exception.OpcaoInvalidaException;
+import tech.devinhouse.exception.OpcaoInvalidaException;
 
 public class Main {
 

@@ -1,4 +1,4 @@
-package tech.devinhouse.Exception;
+package tech.devinhouse.exception;
 
 public class OpcaoInvalidaException extends Exception{
 

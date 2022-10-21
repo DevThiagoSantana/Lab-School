@@ -1,7 +1,6 @@
 package tech.devinhouse.cli;
 
-import tech.devinhouse.Aplicacao;
-import tech.devinhouse.Exception.OpcaoInvalidaException;
+import tech.devinhouse.exception.OpcaoInvalidaException;
 import tech.devinhouse.model.*;
 import tech.devinhouse.util.ConsoleColors;
 import tech.devinhouse.util.CpfValidador;
