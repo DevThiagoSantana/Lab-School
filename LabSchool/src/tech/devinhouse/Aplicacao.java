@@ -194,19 +194,19 @@ try {
             break;
 
         case Pedagogos_com_mais_atendimentos_pedagogicos:
-            System.out.println("Pedagogo com Maior Atendimento");
-            List<Pedagogo> pedagogoOrdem = repo.consultaPedagogo();
-            display.listarPedagogoAtendimento(pedagogoOrdem);
-            pedagogoOrdem.clear();
-            display.aguardar();
-            break;
+                System.out.println("Pedagogo com Maior Atendimento");
+                List<Pedagogo> pedagogoOrdem = repo.consultaPedagogo();
+                display.listarPedagogoAtendimento(pedagogoOrdem);
+                pedagogoOrdem.clear();
+                display.aguardar();
+                break;
 
 
         case Sair:
-            System.out.println(ConsoleColors.RED_BACKGROUND + "Saindo do programa" + ConsoleColors.RESET);
-            display.intro();
-            display.aguardarSair();
-            break;
+                System.out.println(ConsoleColors.RED_BACKGROUND + "Saindo do programa" + ConsoleColors.RESET);
+                display.intro();
+                display.aguardarSair();
+                break;
 
     }
 }catch (OpcaoInvalidaException e){
