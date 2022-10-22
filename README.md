@@ -26,18 +26,18 @@ Código  (deve ser gerado automaticamente pelo sistema).
 
 Os requisitos de cadastros previstos são:
 
-RF01 - Cadastro de Aluno
-RF02 - Atualização da Situação da matrícula de Aluno
-RF03 - Cadastro de Professor
-RF04 - Cadastro de Pedagogo
-RF05 - Realização de Atendimento Pedagógico
+RF01 - Cadastro de Aluno.
+RF02 - Atualização da Situação da matrícula de Aluno.
+RF03 - Cadastro de Professor.
+RF04 - Cadastro de Pedagogo.
+RF05 - Realização de Atendimento Pedagógico.
 
 O Lab School também deverá apresentar os seguintes relatórios:
 
-RF06 - Listagem de Pessoas: 
-RF07 - Relatório dos Alunos: 
-RF08 - Relatório dos Professores:
-RF09 - Relatório de Alunos com mais atendimentos pedagógicos
-RF10 - Pedagogos com mais atendimentos pedagógicos
+RF06 - Listagem de Pessoas. 
+RF07 - Relatório dos Alunos. 
+RF08 - Relatório dos Professores.
+RF09 - Relatório de Alunos com mais atendimentos pedagógicos.
+RF10 - Pedagogos com mais atendimentos pedagógicos.
  
 
